@@ -12,6 +12,13 @@ class CoinList extends Component {
 				<td>
 					${accounting.formatNumber(coinData[0].market_cap_usd)}
 				</td>
+				<td>
+					{accounting.formatMoney(coinData[0].price_usd)}
+				</td>
+				<td>
+					&nbsp;{accounting.formatNumber(coinData[0].percent_change_24h)} /
+					&nbsp;{accounting.formatNumber(coinData[0].percent_change_7d)}
+				</td>
 			</tr>
 		);
 	}
@@ -23,7 +30,7 @@ class CoinList extends Component {
 						<th>Coin Name</th>
 						<th>Market Cap</th>
 						<th>Price</th>
-						<th>%Change (24hr)</th>
+						<th>% Change (24hr/7days)</th>
 					</tr>
 				</thead>
 				<tbody>
