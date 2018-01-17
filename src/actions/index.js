@@ -10,7 +10,10 @@ export const FETCH_COIN = 'FETCH_COIN';
 export function fetchCoin(coinName) {
 	const url = `${API_ENDPOINT_COIN}${coinName}/`;
 	const request = axios.get(url); // this returns a promise - stored in 'request'
+
 	//payoad is an optional property that can go along with actions to contain additional info 
+	//by passing a promise in the payload, ReduxPromise middleware will be able to detect that it's a promise
+	//and handle the call then return the response to the reducer... allows us to have nice looking code in reducers.
 	return {
 		type: FETCH_COIN,
 		payload: request

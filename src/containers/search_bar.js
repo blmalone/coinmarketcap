@@ -16,12 +16,13 @@ class SearchBar extends Component {
 	onFormSubmit(event) {
 		event.preventDefault();
 		//Fetch coin data
-		fetchCoin(this.state.term); //why is the action creator in props? 
+		this.props.fetchCoin(this.state.term); //why is the action creator in props? fetchCoin works but doesn't hit reducer?
 		this.setState({ term: '' });
 	}
 	render() {
 		//className is from boot-strap js.
 		//form tag is good as you get submit functionality by default
+		// we have callback functions passed to these HTML elements -> this causes confusion with the context of this (use bind())
 		return (
 			<form onSubmit={this.onFormSubmit} className="input-group">
 				<input 
