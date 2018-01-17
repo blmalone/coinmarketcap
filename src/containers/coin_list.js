@@ -7,6 +7,9 @@ export default class CoinList extends Component {
 				<thead>
 					<tr>
 						<th>Coin Name</th>
+						<th>Market Cap</th>
+						<th>Price</th>
+						<th>%Change (24hr)</th>
 					</tr>
 				</thead>
 				<tbody>
