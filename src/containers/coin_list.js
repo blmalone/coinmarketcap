@@ -22,6 +22,17 @@ class CoinList extends Component {
 			</tr>
 		);
 	}
+	displayPrompt(coinData) {
+		if(coinData.length === 0 ){
+			return ( 
+				<tr>
+					<td>
+						Please search for coin or token...
+					</td>
+				</tr>
+			);
+		}
+	}
 	render() {
 		return (
 			<div>
@@ -35,6 +46,7 @@ class CoinList extends Component {
 					</tr>
 				</thead>
 				<tbody>
+					{this.displayPrompt(this.props.coin)}
 					{this.props.coin.map(this.renderCoin)}
 				</tbody>
 			</table>
