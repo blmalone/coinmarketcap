@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchCoin } from '../actions/index';
+import { fetchCoin, fetchTopTenCoins } from '../actions/index';
 
 class SearchBar extends Component {
 	constructor(props) {
@@ -9,6 +9,7 @@ class SearchBar extends Component {
 		this.state = { term: '' };
 		this.onInputChange = this.onInputChange.bind(this);
 		this.onFormSubmit = this.onFormSubmit.bind(this);
+		this.props.fetchTopTenCoins();
 	}
 	onInputChange(event) {
 		this.setState({ term : event.target.value });
@@ -39,7 +40,7 @@ class SearchBar extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ fetchCoin }, dispatch);
+	return bindActionCreators({ fetchCoin, fetchTopTenCoins }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(SearchBar);

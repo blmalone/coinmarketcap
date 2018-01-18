@@ -5,25 +5,26 @@ import { accounting } from 'accounting';
 class CoinList extends Component {
 	renderCoin(coinData){
 		return (
-			<tr key={coinData[0].symbol}>
+			<tr key={coinData.symbol}>
 				<td>
-					{coinData[0].name}
+					{coinData.name}
 				</td>
 				<td>
-					${accounting.formatNumber(coinData[0].market_cap_usd)}
+					${accounting.formatNumber(coinData.market_cap_usd)}
 				</td>
 				<td>
-					{accounting.formatMoney(coinData[0].price_usd)}
+					{accounting.formatMoney(coinData.price_usd)}
 				</td>
 				<td>
-					&nbsp;{accounting.formatNumber(coinData[0].percent_change_24h)} /
-					&nbsp;{accounting.formatNumber(coinData[0].percent_change_7d)}
+					&nbsp;{accounting.formatNumber(coinData.percent_change_24h)} /
+					&nbsp;{accounting.formatNumber(coinData.percent_change_7d)}
 				</td>
 			</tr>
 		);
 	}
 	render() {
 		return (
+			<div>
 			<table className="table table-hover">
 				<thead>
 					<tr>
@@ -37,13 +38,31 @@ class CoinList extends Component {
 					{this.props.coin.map(this.renderCoin)}
 				</tbody>
 			</table>
+			<table className="table table-hover">
+				<thead>
+					<tr>
+						<th>Top Ten</th>
+					</tr>
+					<tr>
+						<th>Coin Name</th>
+						<th>Market Cap</th>
+						<th>Price</th>
+						<th>% Change (24hr/7days)</th>
+					</tr>
+				</thead>
+				<tbody>
+					{this.props.topTen.map(this.renderCoin)}
+				</tbody>
+			</table>
+			</div>
 		);
 	}
 }
 
 function mapStateToProps(state) { //or we can just use ES6 syntax -- mapStateToProps({ coin }) 
 	return {
-		coin: state.coin
+		coin: state.coin,
+		topTen: state.topTen
 	};
 }
 
