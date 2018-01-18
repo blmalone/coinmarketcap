@@ -26,9 +26,7 @@ class CoinList extends Component {
 		if(coinData.length === 0 ){
 			return ( 
 				<tr>
-					<td>
-						Search for a specific coin or token...
-					</td>
+					<td>Search for a specific coin or token... </td>
 				</tr>
 			);
 		}
