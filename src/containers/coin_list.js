@@ -27,7 +27,7 @@ class CoinList extends Component {
 			return ( 
 				<tr>
 					<td>
-						Please search for coin or token...
+						Search for a specific coin or token...
 					</td>
 				</tr>
 			);
