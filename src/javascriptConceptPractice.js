@@ -1,3 +1,4 @@
+import fs from 'fs';
 //Looking into Higer Order funcions - Fileter, Map, Reduce
 //################################################################################################################
 //To run this program just pass this js file as an arguement to node <arg> on the commandline. 
@@ -86,6 +87,12 @@ console.log(totalAmount);
 	Exploring more about the reduce function.
 */
 
+
+/*
+	For me, it makes reduce easier to understand when you use the same arguments every time.
+	I use "result", "item" and "index". "result' is the result you're building up to in your
+	reduce function, "item" is the current item you're iterating over, and "index" is the index.﻿
+*/
 
 
 
