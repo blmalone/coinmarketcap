@@ -1,0 +1,6 @@
+Blaine Malone	waffle iron 	80 	2
+Blaine Malone	blender 	200 	1
+Blaine Malone	knife 	10 	4
+Jamie Murphy	waffle iron	80	1
+Jamie Murphy	knife	10	2
+Jamie Murphy	pot	20	3

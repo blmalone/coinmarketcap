@@ -86,12 +86,25 @@ console.log(totalAmount);
 
 	Exploring more about the reduce function.
 */
-
+//We work from left to right ------> function invokations pass resulting data to next function.
+var out = fs.readFileSync('data.txt', 'utf8').split('\n').map(line => line.split('\t')).reduce((res, item) => {
+	res[item[0]] = res[item[0]] || [];
+	res[item[0]].push({
+		name: item[1],
+		price: item[2],
+		quantity: item[3]
+	});
+	return res;
+}, {});
+console.log('output:\n', JSON.stringify(out, null, 2)) ;
 
 /*
 	For me, it makes reduce easier to understand when you use the same arguments every time.
 	I use "result", "item" and "index". "result' is the result you're building up to in your
 	reduce function, "item" is the current item you're iterating over, and "index" is the index.﻿
+
+	Good functional code is made up of functions that do one thing and we just bind them all together.
+	The chainability here is something that you'll see a lot of if you do functional programming.
 */
 
 
