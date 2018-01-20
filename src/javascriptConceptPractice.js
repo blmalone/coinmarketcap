@@ -107,7 +107,16 @@ console.log('output:\n', JSON.stringify(out, null, 2)) ;
 	The chainability here is something that you'll see a lot of if you do functional programming.
 */
 
+//################################################################################################################
+/*
+	Closures in Javascript
+*/
+var me = 'Bruce Wayne';
 
+function greetMe() {
+	console.log('Hello, ' + me + '!');
+}
+greetMe();
 
 
 
