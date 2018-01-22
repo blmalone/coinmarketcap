@@ -1,4 +1,5 @@
 import fs from 'fs';
+import _ from 'lodash';
 //Looking into Higer Order funcions - Fileter, Map, Reduce
 //################################################################################################################
 //To run this program just pass this js file as an arguement to node <arg> on the commandline. 
@@ -206,5 +207,70 @@ MyObject.prototype.getName = function() {
 MyObject.prototype.getMessage = function() {
   return this.message;
 };
+
+//################################################################################################################
+/*
+	Currying in Javascript
+	A currieable function is simply a function that takes every arguement by itself and then just returns a new function
+	that expects the next dependency to the function, until all dependencies have been fulfilled and the final value
+	is returned.
+*/
+
+let dragon = 
+	name => 
+		size => 
+			element => 
+				name + ' is a ' +
+				size + ' dragon that breathes ' + 
+				element + '!';
+
+let output = dragon('blaine')('small')('fire');
+console.log(output);
+
+//################################################################################################################
+/*
+	Recursion - by example
+
+*/
+//Below is heirarchial data represented in json. we will interpret it using recursion 
+let categories = [
+	{ id: 'animals', 'parent': null},
+	{ id: 'mammals', 'parent': 'animals' },
+	{ id: 'cats', 'parent': 'mammals' },
+	{ id: 'dogs', 'parent': 'mammals' },
+	{ id: 'chihuahua', 'parent': 'dogs' },
+	{ id: 'labrador', 'parent': 'dogs' },
+	{ id: 'persian', 'parent': 'cats' },
+	{ id: 'siamese', 'parent': 'cats' },
+]
+/*
+	We want to make it look like this: 
+	{
+		animals: {
+			mammals: {
+				dogs: {
+					chihuahua: null,
+					labrador: null
+				},
+				cats: {
+					persian: null,
+					siamese: null
+				}
+			}
+		}
+	}
+*/
+
+let makeTree = (categories, parent) => {
+	let node = {};
+	categories
+	.filter(c => c.parent === parent)
+	.forEach(c => node[c.id] = 
+		makeTree(categories, c.id)) 
+	return node;
+}
+console.log(JSON.stringify(makeTree(categories, null), null, 2 ));
+
+
 
 
