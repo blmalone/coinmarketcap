@@ -110,18 +110,101 @@ console.log('output:\n', JSON.stringify(out, null, 2)) ;
 //################################################################################################################
 /*
 	Closures in Javascript
+	A closure is the combination of a function and the lexical environment within which that function was declared.
+	Inner functions have access to the variables of outer functions.
+
 */
-var me = 'Bruce Wayne';
-
-function greetMe() {
-	console.log('Hello, ' + me + '!');
+//This is an example of lexical scoping. The word "lexical" refers to the fact that lexical scoping uses
+// the location where a variable is declared within the source code to determine where that variable is available.
+function init() {
+    var name = "Mozilla"; // name is a local variable created by init
+    function displayName() { // displayName() is the inner function, a closure
+        console.log(name); // displayName() uses variable declared in the parent function    
+    }
+    displayName();    
 }
-greetMe();
+init();
 
 
+/*
+	In some programming languages, the local variables within a function exist only
+	for the duration of that function's execution. Once makeFunc() has finished executing,
+	you might expect that the name variable would no longer be accessible. 
+	However, because the code still works as expected, this is obviously not the case in JavaScript.
+
+	The reason is that functions in JavaScript form closures. A closure is the combination of a 
+	function and the lexical environment within which that function was declared. This environment 
+	consists of any local variables that were in-scope at the time the closure was created.
+	In this case, myFunc is a reference to the instance of the function displayName
+	created when makeFunc is run. The instance of displayName maintains a reference
+	to its lexical environment, within which the variable name exists.
+	For this reason, when myFunc is invoked, the variable name remains available for 
+	use and "Mozilla" is passed to console.log().
+*/
+
+function makeFunc() {
+  var name = 'Mozilla';
+  function displayName() {
+    console.log('Closure Example 2: ', name);
+  }
+  return displayName;//being returned from makeFunc() without being executed. 
+}
+
+var myFunc = makeFunc();
+myFunc();
 
 
+/*
+	It is unwise to unnecessarily create functions within other functions if closures
+	are not needed for a particular task, as it will negatively affect script performance
+	both in terms of processing speed and memory consumption.
+
+	For instance, when creating a new object/class, methods should normally be associated
+	to the object's prototype rather than defined into the object constructor.
+	The reason is that whenever the constructor is called, the methods would get reassigned
+	(that is, for every object creation).
 
 
+*/
+
+//For example consider the following case: This code does not take advantage of closures.
+function MyObject(name, message) {
+  this.name = name.toString();
+  this.message = message.toString();
+  this.getName = function() {
+    return this.name;
+  };
+
+  this.getMessage = function() {
+    return this.message;
+  };
+}
+//The above code could be rewritten as follows...
+function MyObject(name, message) {
+  this.name = name.toString();
+  this.message = message.toString();
+}
+MyObject.prototype = {
+  getName: function() {
+    return this.name;
+  },
+  getMessage: function() {
+    return this.message;
+  }
+};
+/*
+	However, redefining the prototype is not recommended. 
+	The following example instead appends to the existing prototype:
+*/
+function MyObject(name, message) {
+  this.name = name.toString();
+  this.message = message.toString();
+}
+MyObject.prototype.getName = function() {
+  return this.name;
+};
+MyObject.prototype.getMessage = function() {
+  return this.message;
+};
 
 
