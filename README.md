@@ -16,5 +16,7 @@ Checkout this repo, install dependencies, then start the gulp process with the f
 
 
 ## Running the Javascript Concepts file via CLI
-`cd coinmarketcap/src`
-`babel javascriptConceptPractice.js | node`
+```
+> cd coinmarketcap/src
+> babel javascriptConceptPractice.js | node
+```
