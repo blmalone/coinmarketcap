@@ -264,7 +264,7 @@ let categories = [
 let makeTree = (categories, parent) => {
 	let node = {};
 	categories
-	.filter(c => c.parent === parent)
+	.filter(c => c.parent === parent) // filtering out categories that have the same parent 
 	.forEach(c => node[c.id] = 
 		makeTree(categories, c.id)) 
 	return node;
